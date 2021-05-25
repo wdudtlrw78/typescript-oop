@@ -1,4 +1,10 @@
 {
+  /**
+   * JavaScript
+   * Primitive: number, string, boolean, bigint, symbol, null, undefined
+   * Object: function, array.....
+   */
+
   // number
   const num: number = -6;
 
@@ -21,20 +27,21 @@
   let person: null; // 💩
   let person2: string | null;
 
-  // unknown은 똥이닷
+  // unknown 💩
   let notSure: unknown = 0;
   notSure = 'he';
   notSure = true;
 
-  // any도 똥이닷
+  // any 💩
   let anything: any = 0;
-  anything = 'MoMo';
+  anything = 'hello';
 
   // void
   function print(): void {
-    console.log('hello momo');
+    console.log('hello');
     return;
   }
+  let unusable: void = undefined; // 💩
 
   // never
   function throwError(message: string): never {
