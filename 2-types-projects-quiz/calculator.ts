@@ -4,13 +4,13 @@
 
 // My Code
 
-function calculate(operator: string, num1: number, num2: number) {
-  if (operator === 'add') return num1 + num2;
-  else if (operator === 'substract') return num1 - num2;
-  else if (operator === 'multiply') return num1 * num2;
-  else if (operator === 'divide') return num1 / num2;
-  else if (operator === 'remainder') return num1 % num2;
-}
+// function calculate(operator: string, num1: number, num2: number) {
+//   if (operator === 'add') return num1 + num2;
+//   else if (operator === 'substract') return num1 - num2;
+//   else if (operator === 'multiply') return num1 * num2;
+//   else if (operator === 'divide') return num1 / num2;
+//   else if (operator === 'remainder') return num1 % num2;
+// }
 
 // Elie Code
 
