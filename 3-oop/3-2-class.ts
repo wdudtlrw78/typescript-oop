@@ -19,7 +19,7 @@
     static makeMachine(coffeeBeans: number): CoffeeMaker {
       return new CoffeeMaker(coffeeBeans);
     }
-
+    Q;
     makeCoffee(shots: number): CoffeeCup {
       if (this.coffeeBeans < shots * CoffeeMaker.BEANS_GRAM_PER_SHOT) {
         throw new Error('Not enough coffee beans!');

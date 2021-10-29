@@ -1,13 +1,12 @@
 {
-  // public : default 기본적으로 외부에서 다 볼 수 있는 공개적으로 설정
-  // private : 외부에서 절대볼 수 없고 접근도 할 수 없다.
-  // protected : 나중에 상속을 할 때 외부에서 접근 할 수 없지만 이 클래스를 상속한 자식 클래스에서만 접근 가능
-
   type CoffeeCup = {
     shots: number;
     hasMilk: boolean;
   };
 
+  // public
+  // private
+  // protected
   class CoffeeMaker {
     // static을 붙이는 순간 BEANS_GRAMM_PER_SHOT 상수는 오브젝트 레벨이 아니라,
     // 클래스 레벨로 (클래스 영역의 메모리에 할당이 한번만 됨)
@@ -52,8 +51,8 @@
     get fullName(): string {
       return `${this.firstName} ${this.lastName}`;
     }
-    private internalAge = 4;
 
+    private internalAge = 4;
     get age(): number {
       return this.internalAge;
     }
@@ -61,11 +60,11 @@
     set age(num: number) {
       this.internalAge = num;
     }
-
     constructor(private firstName: string, private lastName: string) {}
   }
 
-  const user = new User('MO', 'YEONGSIK');
-  user.age = 27;
+  const user = new User('Steve', 'Jobs');
+  console.log(user.fullName);
+  user.age = 6;
   console.log(user.fullName);
 }
