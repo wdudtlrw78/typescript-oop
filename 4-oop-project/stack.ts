@@ -23,12 +23,15 @@ class StackImpl implements Stack {
     if (this.size === this.capacity) {
       throw new Error('Stack is full');
     }
+
+    // head =  { value: momo, next: undefind}
     const node: StackNode = { value, next: this.head };
     this.head = node;
     this._size++;
   }
 
   pop(): string {
+    // null == undefined
     if (this.head == null) {
       throw new Error('Stack is empty!');
     }
