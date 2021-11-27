@@ -51,7 +51,7 @@ export class PageComponent
   implements Composable
 {
   constructor(private pageItemConstructor: SectionContainerConstructor) {
-    super('<ul class="page">This is PageComponent</ul>');
+    super('<ul class="page"></ul>');
   }
 
   addChild(section: Component) {
