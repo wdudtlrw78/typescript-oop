@@ -1,8 +1,8 @@
 import { Component } from './components/component.js';
-import { ImageComponent } from './components/item/image.js';
-import { NoteComponent } from './components/item/note.js';
-import { TodoComponent } from './components/item/todo.js';
-import { VideoComponent } from './components/item/video.js';
+import { ImageComponent } from './components/page/item/image.js';
+import { NoteComponent } from './components/page/item/note.js';
+import { TodoComponent } from './components/page/item/todo.js';
+import { VideoComponent } from './components/page/item/video.js';
 import {
   Composable,
   PageComponent,
