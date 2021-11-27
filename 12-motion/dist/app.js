@@ -1,4 +1,4 @@
-import { InputDialog } from './components/dialog/dialog.js';
+import { InputDialog, } from './components/dialog/dialog.js';
 import { MediaSectionInpuit } from './components/dialog/input/media-input.js';
 import { TextSectionInpuit } from './components/dialog/input/text-input.js';
 import { ImageComponent } from './components/page/item/image.js';
@@ -8,66 +8,28 @@ import { VideoComponent } from './components/page/item/video.js';
 import { PageComponent, PageItemComponent, } from './components/page/page.js';
 class App {
     constructor(appRoot, dialogRoot) {
+        this.dialogRoot = dialogRoot;
         this.page = new PageComponent(PageItemComponent);
         this.page.attachTo(appRoot);
-        const imageBtn = document.querySelector('#new-image');
-        imageBtn.addEventListener('click', () => {
+        this.bindElementToDialog('#new-image', MediaSectionInpuit, (input) => new ImageComponent(input.title, input.url));
+        this.bindElementToDialog('#new-video', MediaSectionInpuit, (input) => new VideoComponent(input.title, input.url));
+        this.bindElementToDialog('#new-note', TextSectionInpuit, (input) => new NoteComponent(input.title, input.body));
+        this.bindElementToDialog('#new-todo', TextSectionInpuit, (input) => new TodoComponent(input.title, input.body));
+    }
+    bindElementToDialog(selector, InputComponent, makeSection) {
+        const element = document.querySelector(selector);
+        element.addEventListener('click', () => {
             const dialog = new InputDialog();
-            const inputSection = new MediaSectionInpuit();
-            dialog.addChild(inputSection);
-            dialog.attachTo(dialogRoot);
+            const input = new InputComponent();
+            dialog.addChild(input);
+            dialog.attachTo(this.dialogRoot);
             dialog.SetOnCloseListener(() => {
-                dialog.removeFrom(dialogRoot);
+                dialog.removeFrom(this.dialogRoot);
             });
             dialog.SetOnSubmitListener(() => {
-                const image = new ImageComponent(inputSection.title, inputSection.url);
+                const image = makeSection(input);
                 this.page.addChild(image);
-                dialog.removeFrom(dialogRoot);
-            });
-        });
-        const videoBtn = document.querySelector('#new-video');
-        videoBtn.addEventListener('click', () => {
-            const dialog = new InputDialog();
-            const inputSection = new MediaSectionInpuit();
-            dialog.addChild(inputSection);
-            dialog.attachTo(dialogRoot);
-            dialog.SetOnCloseListener(() => {
-                dialog.removeFrom(dialogRoot);
-            });
-            dialog.SetOnSubmitListener(() => {
-                const video = new VideoComponent(inputSection.title, inputSection.url);
-                this.page.addChild(video);
-                dialog.removeFrom(dialogRoot);
-            });
-        });
-        const noteBtn = document.querySelector('#new-note');
-        noteBtn.addEventListener('click', () => {
-            const dialog = new InputDialog();
-            const inputSection = new TextSectionInpuit();
-            dialog.addChild(inputSection);
-            dialog.attachTo(dialogRoot);
-            dialog.SetOnCloseListener(() => {
-                dialog.removeFrom(dialogRoot);
-            });
-            dialog.SetOnSubmitListener(() => {
-                const note = new NoteComponent(inputSection.title, inputSection.body);
-                this.page.addChild(note);
-                dialog.removeFrom(dialogRoot);
-            });
-        });
-        const todoBtn = document.querySelector('#new-todo');
-        todoBtn.addEventListener('click', () => {
-            const dialog = new InputDialog();
-            const inputSection = new TextSectionInpuit();
-            dialog.addChild(inputSection);
-            dialog.attachTo(dialogRoot);
-            dialog.SetOnCloseListener(() => {
-                dialog.removeFrom(dialogRoot);
-            });
-            dialog.SetOnSubmitListener(() => {
-                const todo = new TodoComponent(inputSection.title, inputSection.body);
-                this.page.addChild(todo);
-                dialog.removeFrom(dialogRoot);
+                dialog.removeFrom(this.dialogRoot);
             });
         });
     }
